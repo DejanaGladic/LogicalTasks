@@ -1,4 +1,6 @@
-﻿namespace LogicalTasks.Task2
+﻿using System.Xml.Linq;
+
+namespace LogicalTasks.Task2
 {
     public class Weather
     {
@@ -16,7 +18,17 @@
             this.Country = Country;
             this.City = City;
             this.Temperature = Temperature;
-            this.WindSpeed = WindSpeed; 
+            this.WindSpeed = WindSpeed;
+        }
+
+        public Object GetValueByPropertieName(string propertyName) {
+            return this.GetType().GetProperty(propertyName).GetValue(this);
+        }
+
+        public override string ToString()
+        {
+            return $"Country: {Country}, City: {City}, " +
+                $"Temperature: {Temperature}, WindSpeed: {WindSpeed}";
         }
 
 

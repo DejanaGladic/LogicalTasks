@@ -3,52 +3,80 @@
     public class Task2
     {
         IWeatherRepository _weatherRepository;
+        List<Weather> data;
 
         public Task2(IWeatherRepository weatherRepository)
         {
-            _weatherRepository = weatherRepository; 
+            _weatherRepository = weatherRepository;
+            data = _weatherRepository.GetAll().ToList();
         }
 
-        public void ExecutionOfTask()
+        public void SortByTemperature()
         {
-            List<Weather> data = _weatherRepository.GetAll().ToList();           
- 
-            QuickSort2(data, 0, data.Count() - 1);            
+            BeginningOfSorting("Temperature");
+            Console.WriteLine("Sorted by temperature: ");
+            printSortedList(data);
+             
+        }
+        public void SortByCityName()
+        {
+            BeginningOfSorting("City");
+            Console.WriteLine("Sorted by city name: ");
+            printSortedList(data);
 
-            foreach (Weather weather in data)
-            {
-                Console.WriteLine(weather.Temperature);
-            }
-        
+        }
+        public void BeginningOfSorting(string sortByProperty)
+        {
+            int start = 0;
+            int end = data.Count - 1;
+            QuickSort(data, start, end, sortByProperty);
         }
 
-        public void QuickSort2(List<Weather> data, int start, int end) {
+        public void QuickSort(List<Weather> data, int start, int end,string sortByProperty) {
             if (start < end) {
-                var pi = PartitionIndex(data, start, end);
-                QuickSort2(data, start, pi-1);
-                QuickSort2(data, pi + 1, end);
+                var pi = PartitionIndex(data, start, end, sortByProperty);
+                QuickSort(data, start, pi-1, sortByProperty);
+                QuickSort(data, pi + 1, end, sortByProperty);
             }
         }
 
-        public int PartitionIndex(List<Weather> data, int start, int end) {
-            var pivot = data[data.Count() - 1];
+        public int PartitionIndex(List<Weather> data, int start, int end, string sortByProperty) {
+            var pivot = data[end];
             var indexOfSmaller = start - 1;
-
-            for(int i = start; i < end; i++)
+            Weather temporary;
+            for (int i = start; i < end; i++)
             {
-                if (pivot.Temperature > data[i].Temperature)
+                if (CompareValue(pivot, data[i], sortByProperty) > 0)
                 {
                     indexOfSmaller++;
-                    Weather temporary1 = data[indexOfSmaller];
+                    temporary = data[indexOfSmaller];
                     data[indexOfSmaller] = data[i];
-                    data[i] = temporary1;
+                    data[i] = temporary;
                 }
-
             }
-            Weather temporary2 = data[indexOfSmaller+1];
-            data[indexOfSmaller+1] = data[end];
-            data[end] = temporary2;
-            return indexOfSmaller + 1;         
+            indexOfSmaller++;
+            temporary = data[indexOfSmaller];
+            data[indexOfSmaller] = data[end];
+            data[end] = temporary;
+
+            return indexOfSmaller;         
+        }
+
+        public decimal CompareValue(Weather firstValueToCompare, Weather secondValueToCompare, string sortByProperty) {
+            Object firstValue = firstValueToCompare.GetValueByPropertieName(sortByProperty);
+            Object secondValue = secondValueToCompare.GetValueByPropertieName(sortByProperty);
+            if(firstValue is decimal && secondValue is decimal)
+            {
+                return decimal.Parse(firstValue.ToString()) - decimal.Parse(secondValue.ToString());
+            }
+            return string.Compare(firstValue.ToString(), secondValue.ToString());
+        } 
+
+        public void printSortedList(List<Weather> weatherList) {
+            foreach (Weather weather in weatherList)
+            {
+                Console.WriteLine(weather.ToString());
+            }
         }
     }
 }
