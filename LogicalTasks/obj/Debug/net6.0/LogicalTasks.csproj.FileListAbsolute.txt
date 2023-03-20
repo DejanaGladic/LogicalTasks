@@ -1,0 +1,15 @@
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\bin\Debug\net6.0\LogicalTasks.exe
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\bin\Debug\net6.0\LogicalTasks.deps.json
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\bin\Debug\net6.0\LogicalTasks.runtimeconfig.json
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\bin\Debug\net6.0\LogicalTasks.dll
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\bin\Debug\net6.0\LogicalTasks.pdb
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\obj\Debug\net6.0\LogicalTasks.csproj.AssemblyReference.cache
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\obj\Debug\net6.0\LogicalTasks.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\obj\Debug\net6.0\LogicalTasks.AssemblyInfoInputs.cache
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\obj\Debug\net6.0\LogicalTasks.AssemblyInfo.cs
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\obj\Debug\net6.0\LogicalTasks.csproj.CoreCompileInputs.cache
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\obj\Debug\net6.0\LogicalTasks.dll
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\obj\Debug\net6.0\refint\LogicalTasks.dll
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\obj\Debug\net6.0\LogicalTasks.pdb
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\obj\Debug\net6.0\LogicalTasks.genruntimeconfig.cache
+C:\Users\d.gladic-int\Desktop\LogicalTasks\LogicalTasks\obj\Debug\net6.0\ref\LogicalTasks.dll
