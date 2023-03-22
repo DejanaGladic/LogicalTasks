@@ -10,11 +10,11 @@ namespace LogicalTasks.Filtering
 
         public FilterClient(IEnumerable<Weather> weatherData, IPrint _print)
         {
-            this._weatherData = weatherData;
+            _weatherData = weatherData;
             this._print = _print;
         }
 
-        public void FilterData() {
+        public List<Weather> FilterData() {
 
             FilterContext filterContext = new FilterContext();
             FilterStrategy filterStrategy;
@@ -71,7 +71,8 @@ namespace LogicalTasks.Filtering
 
             filterContext.FilterByValue(valueForFiltering);
             _print.PrintList(filterContext.GetFilteredList());
-        }      
+            return filterContext.GetFilteredList().ToList();
+        }
 
     }
 }
