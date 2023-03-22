@@ -1,4 +1,5 @@
 ﻿using LogicalTasks.Data;
+using LogicalTasks.Filtering;
 using LogicalTasks.InterfaceImplementation;
 using LogicalTasks.Print;
 using LogicalTasks.Task1;
@@ -12,7 +13,8 @@ IPrint print = new Print();
 
 Sorting task2 = new Sorting(weatherRepository, print);
 
-Console.WriteLine("Choose the task:\n1. STAR TREE\n2. SORTING\n3. SEARCHING\n5. PAGGINATION");
+Console.WriteLine("Choose the task:\n1. STAR TREE\n2. SORTING\n" +
+    "3. SEARCHING\n4. FILTRATION\n5. PAGGINATION");
 var choose = Console.ReadLine();
 
 if (choose == "1")
@@ -46,6 +48,12 @@ else if (choose == "3")
     string itemToSearch = Console.ReadLine();
     searching.Search(itemToSearch);
 }
+else if (choose == "4")
+{
+    Console.WriteLine("**********FILTRATION************");
+    FilterClient filterClient = new FilterClient(allWeatherData, print);
+    filterClient.FilterData();
+}
 else if (choose == "5")
 {
     Console.WriteLine("**********PAGGINATION************");
@@ -53,6 +61,7 @@ else if (choose == "5")
     Paggination task4 = new Paggination(print, allWeatherData, itemsPerPage);
     task4.Pagginate();
 }
+
 
 
 
