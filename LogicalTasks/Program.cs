@@ -1,14 +1,58 @@
-﻿using LogicalTasks.Task1;
+﻿using LogicalTasks.Data;
+using LogicalTasks.InterfaceImplementation;
+using LogicalTasks.Print;
+using LogicalTasks.Task1;
 using LogicalTasks.Task2;
+using LogicalTasks.Task3;
+using LogicalTasks.Task4;
 
-Console.WriteLine("**********TASK 1************");
-Task1 task1 = new Task1();
-task1.ExecutionOfTask1();
-
-Console.WriteLine();
-Console.WriteLine("**********TASK 2************");
 IWeatherRepository weatherRepository = new WeatherRepository();
-Task2 task2 = new Task2(weatherRepository);
-task2.SortByTemperature();
-Console.WriteLine("**********");
-task2.SortByCityName();
+List<Weather> allWeatherData = weatherRepository.GetAll().ToList();
+IPrint print = new Print();
+
+Sorting task2 = new Sorting(weatherRepository, print);
+
+Console.WriteLine("Choose the task:\n1. STAR TREE\n2. SORTING\n3. SEARCHING\n5. PAGGINATION");
+var choose = Console.ReadLine();
+
+if (choose == "1")
+{
+    Console.WriteLine("**********STAR TREE************");
+    StarTree task1 = new StarTree();
+    task1.ExecutionOfTask1();
+}
+else if (choose == "2")
+{
+    Console.WriteLine("**********SORTING************");
+    Console.WriteLine("**********Temperature");
+    task2.SortBy("Temperature");
+    task2.PrintSortedList();
+    Console.WriteLine("**********City");
+    task2.SortBy("City");
+    task2.PrintSortedList();
+    Console.WriteLine("**********ZipCode");
+    task2.SortBy("ZipCode");
+    task2.PrintSortedList();
+}
+else if (choose == "3")
+{
+    Console.WriteLine("**********SEARCHING************");
+    Console.WriteLine("Type zip code to search");
+
+    task2.SortBy("ZipCode");
+    List<Weather> listToSearch = task2.GetSortedWeatherList().ToList();
+    Searching searching = new Searching(listToSearch,"ZipCode");
+
+    string itemToSearch = Console.ReadLine();
+    searching.Search(itemToSearch);
+}
+else if (choose == "5")
+{
+    Console.WriteLine("**********PAGGINATION************");
+    int itemsPerPage = 3;
+    Paggination task4 = new Paggination(print, allWeatherData, itemsPerPage);
+    task4.Pagginate();
+}
+
+
+

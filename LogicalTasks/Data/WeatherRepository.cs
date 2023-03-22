@@ -1,4 +1,4 @@
-﻿namespace LogicalTasks.Task2
+﻿namespace LogicalTasks.Data
 {
     public class WeatherRepository : IWeatherRepository
     {

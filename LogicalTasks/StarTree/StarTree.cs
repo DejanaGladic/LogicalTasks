@@ -1,6 +1,6 @@
 ﻿namespace LogicalTasks.Task1
 {
-    public class Task1
+    public class StarTree
     {
         public void ExecutionOfTask1() {
             Console.WriteLine("Enter number of lines");

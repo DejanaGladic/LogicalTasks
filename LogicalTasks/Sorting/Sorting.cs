@@ -1,30 +1,32 @@
-﻿namespace LogicalTasks.Task2
+﻿using LogicalTasks.Data;
+using LogicalTasks.Print;
+
+namespace LogicalTasks.Task2
 {
-    public class Task2
+    public class Sorting
     {
         IWeatherRepository _weatherRepository;
+        IPrint _print;
         List<Weather> data;
+        IEnumerable<Weather> sortedList;
 
-        public Task2(IWeatherRepository weatherRepository)
+        public Sorting(IWeatherRepository weatherRepository, IPrint print)
         {
             _weatherRepository = weatherRepository;
+            _print = print;
             data = _weatherRepository.GetAll().ToList();
         }
 
-        public void SortByTemperature()
+        public void SortBy(string sortBy)
         {
-            BeginningOfSorting("Temperature");
-            Console.WriteLine("Sorted by temperature: ");
-            printSortedList(data);
-             
+            BeginningOfSorting(sortBy);
         }
-        public void SortByCityName()
-        {
-            BeginningOfSorting("City");
-            Console.WriteLine("Sorted by city name: ");
-            printSortedList(data);
 
+        public void PrintSortedList() {
+            Console.WriteLine($"Sorted list: ");
+            _print.PrintList(data);
         }
+
         public void BeginningOfSorting(string sortByProperty)
         {
             int start = 0;
@@ -46,7 +48,7 @@
             Weather temporary;
             for (int i = start; i < end; i++)
             {
-                if (CompareValue(pivot, data[i], sortByProperty) > 0)
+                if (pivot.CompareWithValue(data[i], sortByProperty) > 0)
                 {
                     indexOfSmaller++;
                     temporary = data[indexOfSmaller];
@@ -62,21 +64,9 @@
             return indexOfSmaller;         
         }
 
-        public decimal CompareValue(Weather firstValueToCompare, Weather secondValueToCompare, string sortByProperty) {
-            Object firstValue = firstValueToCompare.GetValueByPropertieName(sortByProperty);
-            Object secondValue = secondValueToCompare.GetValueByPropertieName(sortByProperty);
-            if(firstValue is decimal && secondValue is decimal)
-            {
-                return decimal.Parse(firstValue.ToString()) - decimal.Parse(secondValue.ToString());
-            }
-            return string.Compare(firstValue.ToString(), secondValue.ToString());
-        } 
-
-        public void printSortedList(List<Weather> weatherList) {
-            foreach (Weather weather in weatherList)
-            {
-                Console.WriteLine(weather.ToString());
-            }
+        public IEnumerable<Weather> GetSortedWeatherList() {
+            sortedList = data;
+            return sortedList;
         }
     }
 }
